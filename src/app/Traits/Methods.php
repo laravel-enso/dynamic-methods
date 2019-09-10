@@ -17,7 +17,9 @@ trait Methods
     public function __call($method, $args)
     {
         if (isset(static::$dynamicMethods[$method])) {
-            $closure = Closure::bind(static::$dynamicMethods[$method], $this, static::class);
+            $closure = Closure::bind(
+                static::$dynamicMethods[$method], $this, static::class
+            );
 
             return $closure(...$args);
         }
@@ -26,6 +28,8 @@ trait Methods
             return parent::__call($method, $args);
         }
 
-        throw new BadMethodCallException('Method '.static::class.'::'.$method.'() not found');
+        throw new BadMethodCallException(
+            'Method '.static::class.'::'.$method.'() not found'
+        );
     }
 }
