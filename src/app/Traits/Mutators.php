@@ -11,12 +11,12 @@ trait Mutators
     public function hasGetMutator($key)
     {
         return isset(static::$dynamicMethods['get'.Str::studly($key).'Attribute'])
-            ?: parent::hasGetMutator($key);
+            || parent::hasGetMutator($key);
     }
 
     public function hasSetMutator($key)
     {
         return isset(static::$dynamicMethods['set'.Str::studly($key).'Attribute'])
-            ?: parent::hasSetMutator($key);
+            || parent::hasSetMutator($key);
     }
 }

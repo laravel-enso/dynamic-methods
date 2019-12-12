@@ -2,17 +2,12 @@
 
 namespace LaravelEnso\DynamicMethods\app\Traits;
 
-use Closure;
 use BadMethodCallException;
+use Closure;
 
 trait StaticMethods
 {
     protected static $dynamicStaticMethods = [];
-
-    public static function addDynamicStaticMethod($name, Closure $method)
-    {
-        static::$dynamicStaticMethods[$name] = $method;
-    }
 
     public static function __callStatic($method, $args)
     {
@@ -31,5 +26,10 @@ trait StaticMethods
         throw new BadMethodCallException(
             'Method '.static::class.'::'.$method.'() not found'
         );
+    }
+
+    public static function addDynamicStaticMethod($name, Closure $method)
+    {
+        static::$dynamicStaticMethods[$name] = $method;
     }
 }
