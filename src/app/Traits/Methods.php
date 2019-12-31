@@ -1,13 +1,13 @@
 <?php
 
-namespace LaravelEnso\DynamicMethods\app\Traits;
+namespace LaravelEnso\DynamicMethods\App\Traits;
 
 use BadMethodCallException;
 use Closure;
 
 trait Methods
 {
-    protected static $dynamicMethods = [];
+    protected static array $dynamicMethods = [];
 
     public function __call($method, $args)
     {

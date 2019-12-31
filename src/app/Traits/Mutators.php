@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\DynamicMethods\app\Traits;
+namespace LaravelEnso\DynamicMethods\App\Traits;
 
 use Illuminate\Support\Str;
 
