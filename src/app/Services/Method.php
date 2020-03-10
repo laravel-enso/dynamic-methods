@@ -1,7 +1,7 @@
 <?php
+
 namespace LaravelEnso\DynamicMethods\App\Services;
 
-use Closure;
 use LaravelEnso\DynamicMethods\App\Contracts\Method as Contract;
 use LaravelEnso\DynamicMethods\App\Exceptions\Model;
 use ReflectionClass;
@@ -31,7 +31,7 @@ class Method
         if (! class_exists($this->model)) {
             throw Model::doesntExist($this->model);
         }
-        
+
         if (! (new ReflectionClass($this->model))->hasMethod('addDynamicMethod')) {
             throw Model::missingMethod($this->model);
         }
