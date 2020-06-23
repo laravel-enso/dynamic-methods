@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelEnso\DynamicMethods\App\Services;
+namespace LaravelEnso\DynamicMethods\Services;
 
-use LaravelEnso\DynamicMethods\App\Contracts\Method as Contract;
-use LaravelEnso\DynamicMethods\App\Exceptions\Model;
+use LaravelEnso\DynamicMethods\Contracts\Method as Contract;
+use LaravelEnso\DynamicMethods\Exceptions\Model;
 use ReflectionClass;
 
 class Method
@@ -22,7 +22,8 @@ class Method
         $this->validate();
 
         $this->model::addDynamicMethod(
-            $this->method->name(), $this->method->closure()
+            $this->method->name(),
+            $this->method->closure()
         );
     }
 

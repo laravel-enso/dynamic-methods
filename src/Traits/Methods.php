@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\DynamicMethods\App\Traits;
+namespace LaravelEnso\DynamicMethods\Traits;
 
 use BadMethodCallException;
 use Closure;
@@ -13,7 +13,9 @@ trait Methods
     {
         if (isset(static::$dynamicMethods[$method])) {
             $closure = Closure::bind(
-                static::$dynamicMethods[$method], $this, static::class
+                static::$dynamicMethods[$method],
+                $this,
+                static::class
             );
 
             return $closure(...$args);

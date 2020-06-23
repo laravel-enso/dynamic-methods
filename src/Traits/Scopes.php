@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\DynamicMethods\App\Traits;
+namespace LaravelEnso\DynamicMethods\Traits;
 
 trait Scopes
 {

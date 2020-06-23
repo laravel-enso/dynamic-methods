@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\DynamicMethods\App\Exceptions;
+namespace LaravelEnso\DynamicMethods\Exceptions;
 
 use InvalidArgumentException;
 
