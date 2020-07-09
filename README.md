@@ -1,6 +1,6 @@
 # Dynamic Methods
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4c084aada0bf4f70bf397338300bfc5d)](https://www.codacy.com/app/laravel-enso/dynamic-methods?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/dynamic-methods&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/fcb9ec7a8f7340c789b990c9616c3f25)](https://www.codacy.com/gh/laravel-enso/dynamic-methods?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/dynamic-methods&amp;utm_campaign=Badge_Grade) 
 [![StyleCI](https://github.styleci.io/repos/85466970/shield?branch=master)](https://github.styleci.io/repos/85466970)
 [![License](https://poser.pugx.org/laravel-enso/dynamic-methods/license)](https://packagist.org/packages/laravel-enso/dynamic-methods)
 [![Total Downloads](https://poser.pugx.org/laravel-enso/dynamic-methods/downloads)](https://packagist.org/packages/laravel-enso/dynamic-methods)
