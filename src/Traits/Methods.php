@@ -30,8 +30,13 @@ trait Methods
         );
     }
 
-    public static function addDynamicMethod($name, Closure $method)
+    public static function addDynamicMethod($name, Closure $method): void
     {
         static::$dynamicMethods[$name] = $method;
+    }
+
+    public static function hasMethod($name): bool
+    {
+        return isset(static::$dynamicMethods[$name]);
     }
 }
