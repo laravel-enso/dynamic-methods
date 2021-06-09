@@ -12,11 +12,8 @@ trait Methods
     public function __call($method, $args)
     {
         if (isset(static::$dynamicMethods[$method])) {
-            $closure = Closure::bind(
-                static::$dynamicMethods[$method],
-                $this,
-                static::class
-            );
+            $params = [static::$dynamicMethods[$method], $this, static::class];
+            $closure = Closure::bind(...$params);
 
             return $closure(...$args);
         }

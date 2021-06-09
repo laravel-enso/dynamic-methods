@@ -10,7 +10,7 @@ trait Mutators
 
     public function hasGetMutator($key)
     {
-        return isset(static::$dynamicMethods['get'.Str::studly($key).'Attribute'])
+        return static::$dynamicMethods['get'.Str::studly($key).'Attribute']
             || parent::hasGetMutator($key);
     }
 

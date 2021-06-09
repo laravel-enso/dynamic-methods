@@ -8,13 +8,10 @@ use ReflectionClass;
 
 class Method
 {
-    private string $model;
-    private Contract $method;
-
-    public function __construct(string $model, Contract $method)
-    {
-        $this->model = $model;
-        $this->method = $method;
+    public function __construct(
+        private string $model,
+        private Contract $method
+    ) {
     }
 
     public function bind()
