@@ -3,6 +3,7 @@
 namespace LaravelEnso\DynamicMethods\Services;
 
 use Illuminate\Database\Eloquent\Model as EloquentModel;
+use Illuminate\Support\Facades\App;
 use LaravelEnso\DynamicMethods\Contracts\Method as MethodContract;
 use LaravelEnso\DynamicMethods\Contracts\Relation;
 use LaravelEnso\DynamicMethods\Contracts\Relation as RelationContract;
@@ -22,7 +23,7 @@ class Method
         $this->validate();
 
         if ($this->method instanceof Relation) {
-            $this->addRelation();
+            $this->addRelations();
         } else {
             $this->addMethod();
         }
@@ -36,9 +37,27 @@ class Method
         );
     }
 
-    private function addRelation(): void
+    private function addRelations(): void
+    {
+        $this->addRelation()
+            ->addBindingRelation();
+    }
+
+    private function addRelation(): self
     {
         $this->model::resolveRelationUsing(
+            $this->method->name(),
+            $this->method->closure(),
+        );
+
+        return $this;
+    }
+
+    private function addBindingRelation(): void
+    {
+        $instance = App::make($this->model);
+
+        get_class($instance)::resolveRelationUsing(
             $this->method->name(),
             $this->method->closure(),
         );
