@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 
 class Methods
 {
-    public static function bind(string $model, string | array $methods)
+    public static function bind(string $model, string | array $methods): void
     {
         Collection::wrap($methods)
             ->each(fn ($method) => (new Method($model, new $method()))->bind());

@@ -15,4 +15,9 @@ class Model extends InvalidArgumentException
     {
         return new self("The provided model '{$model}' is not using DynamicMethods");
     }
+
+    public static function isNotModel(string $model)
+    {
+        return new self("The provided class '{$model}' is not an Eloqunet Model");
+    }
 }
