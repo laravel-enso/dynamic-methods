@@ -2,7 +2,6 @@
 
 namespace LaravelEnso\DynamicMethods\Traits;
 
-use BadMethodCallException;
 use Closure;
 use Illuminate\Support\Str;
 
@@ -19,13 +18,7 @@ trait Abilities
             return $closure(...$args);
         }
 
-        if (method_exists(parent::class, '__call')) {
-            return parent::__call($method, $args);
-        }
-
-        throw new BadMethodCallException(
-            'Method '.static::class.'::'.$method.'() not found'
-        );
+        return parent::__call($method, $args);
     }
 
     public function hasNamedScope($scope)
@@ -46,7 +39,7 @@ trait Abilities
             || parent::hasSetMutator($key);
     }
 
-    public static function addDynamicMethod($name, Closure $method)
+    public static function addDynamicMethod($name, Closure $method): void
     {
         static::$dynamicMethods[$name] = $method;
     }
