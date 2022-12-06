@@ -45,7 +45,7 @@ class Dynamics
         return Collection::wrap([
             rtrim($this->psr4Namespace(), '\\'),
             self::Folder,
-            $file->getRelativePath(self::Folder),
+            ...explode('/', $file->getRelativePath(self::Folder)),
             $file->getFilenameWithoutExtension(),
         ])->filter()->implode('\\');
     }

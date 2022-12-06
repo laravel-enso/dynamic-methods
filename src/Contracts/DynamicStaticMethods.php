@@ -6,5 +6,5 @@ use Closure;
 
 interface DynamicStaticMethods
 {
-    public static function resolveStaticMethodUsing(string $name, Closure $method)
+    public static function resolveStaticMethodUsing(string $name, Closure $method);
 }

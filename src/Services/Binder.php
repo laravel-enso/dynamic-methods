@@ -29,7 +29,7 @@ class Binder
 
     private function dynamics(): Collection
     {
-        return Collection::wrap(Config::get('enso.dymamics.vendors'))
+        return Collection::wrap(Config::get('enso.dynamics.vendors'))
             ->map(fn ($vendor) => base_path("vendor/{$vendor}"))
             ->map(fn ($vendor) => File::directories($vendor))
             ->flatten()

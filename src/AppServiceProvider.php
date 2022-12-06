@@ -3,14 +3,10 @@
 namespace LaravelEnso\DynamicMethods;
 
 use Illuminate\Support\ServiceProvider;
-use LaravelEnso\Core\Services\Websockets;
+use LaravelEnso\DynamicMethods\Services\Binder;
 
 class AppServiceProvider extends ServiceProvider
 {
-    public $singletons = [
-        'websockets' => Websockets::class,
-    ];
-
     public function boot()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/dynamics.php', 'enso.dynamics');
@@ -18,5 +14,7 @@ class AppServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config' => config_path('enso'),
         ], ['dynamics-config', 'enso-config']);
+
+        (new Binder())->handle();
     }
 }

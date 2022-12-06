@@ -21,6 +21,8 @@ class Relation
 
     protected function handle(Model $object): void
     {
-        $object::resolveRelationUsing($this->name, $this->closure);
+        $args = [$this->dynamic->name(), $this->dynamic->closure()];
+
+        $object::resolveRelationUsing(...$args);
     }
 }
