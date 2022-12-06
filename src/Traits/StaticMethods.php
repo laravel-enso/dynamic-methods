@@ -7,13 +7,12 @@ use Closure;
 
 trait StaticMethods
 {
-    protected static $dynamicStaticMethods = [];
+    protected static $staticMethodResolvers = [];
 
     public static function __callStatic($method, $args)
     {
-        if (isset(static::$dynamicStaticMethods[$method])) {
-            $params = [static::$dynamicStaticMethods[$method], null, static::class];
-            $closure = Closure::bind(...$params);
+        if ($resolver = static::$staticMethodResolvers[$method] ?? null) {
+            $closure = Closure::bind($resolver, null, static::class);
 
             return $closure(...$args);
         }
@@ -23,12 +22,12 @@ trait StaticMethods
         }
 
         throw new BadMethodCallException(
-            'Method '.static::class.'::'.$method.'() not found'
+            'Static method '.static::class.'::'.$method.'() not found'
         );
     }
 
-    public static function addDynamicStaticMethod($name, Closure $method)
+    public static function resolveStaticMethodUsing(string $name, Closure $method)
     {
-        static::$dynamicStaticMethods[$name] = $method;
+        static::$staticMethodResolvers[$name] = $method;
     }
 }

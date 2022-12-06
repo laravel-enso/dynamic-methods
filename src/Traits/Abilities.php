@@ -2,45 +2,35 @@
 
 namespace LaravelEnso\DynamicMethods\Traits;
 
-use Closure;
 use Illuminate\Support\Str;
 
 trait Abilities
 {
-    protected static array $dynamicMethods = [];
-
-    public function __call($method, $args)
-    {
-        if (isset(static::$dynamicMethods[$method])) {
-            $params = [static::$dynamicMethods[$method], $this, static::class];
-            $closure = Closure::bind(...$params);
-
-            return $closure(...$args);
-        }
-
-        return parent::__call($method, $args);
-    }
+    use Methods;
 
     public function hasNamedScope($scope)
     {
-        return isset(static::$dynamicMethods['scope'.ucfirst($scope)])
+        $name = Str::of($scope)->ucfirst()->prepend('scope')->__toString();
+
+        return isset(static::$methodResolvers[$name])
             || parent::hasNamedScope($scope);
     }
 
     public function hasGetMutator($key)
     {
-        return isset(static::$dynamicMethods['get'.Str::studly($key).'Attribute'])
+        $name = Str::of($key)->studly()
+            ->prepend('get')->append('Attribute')->__toString();
+
+        return isset(static::$methodResolvers[$name])
             || parent::hasGetMutator($key);
     }
 
     public function hasSetMutator($key)
     {
-        return isset(static::$dynamicMethods['set'.Str::studly($key).'Attribute'])
-            || parent::hasSetMutator($key);
-    }
+        $name = Str::of($key)->studly()
+            ->prepend('set')->append('Attribute')->__toString();
 
-    public static function addDynamicMethod($name, Closure $method): void
-    {
-        static::$dynamicMethods[$name] = $method;
+        return isset(static::$methodResolvers[$name])
+            || parent::hasSetMutator($key);
     }
 }

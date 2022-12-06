@@ -9,4 +9,6 @@ interface Relation
     public function name(): string;
 
     public function closure(): Closure;
+
+    public function bindTo(): array;
 }
