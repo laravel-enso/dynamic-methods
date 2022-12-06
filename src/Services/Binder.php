@@ -22,6 +22,8 @@ class Binder
             (new Relation($dynamic))->bind();
         } elseif ($dynamic instanceof DynamicMethod) {
             (new Method($dynamic))->bind();
+        } else {
+            (new StaticMethod($dynamic))->bind();
         }
     }
 
