@@ -28,7 +28,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "LaravelEnso\\DynamicMethods\\AppServiceProvider",
+                "LaravelEnso\\DynamicMethods\\AppServiceProvider"
             ]
         }
     }
