@@ -24,5 +24,12 @@
         "psr-4": {
             "LaravelEnso\\DynamicMethods\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelEnso\\DynamicMethods\\AppServiceProvider",
+            ]
+        }
     }
 }
