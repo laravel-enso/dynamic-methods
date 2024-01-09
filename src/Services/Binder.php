@@ -16,7 +16,7 @@ class Binder
             ->each(fn ($dynamic) => $this->bind($dynamic));
     }
 
-    private function bind(DynamicMethod | DynamicRelation $dynamic)
+    private function bind(DynamicMethod|DynamicRelation $dynamic)
     {
         if ($dynamic instanceof DynamicRelation) {
             (new Relation($dynamic))->bind();
