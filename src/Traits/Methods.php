@@ -7,13 +7,12 @@ use Closure;
 
 trait Methods
 {
-    protected static array $dynamicMethods = [];
+    protected static array $methodResolvers = [];
 
     public function __call($method, $args)
     {
-        if (isset(static::$dynamicMethods[$method])) {
-            $params = [static::$dynamicMethods[$method], $this, static::class];
-            $closure = Closure::bind(...$params);
+        if ($resolver = static::$methodResolvers[$method] ?? null) {
+            $closure = Closure::bind($resolver, $this, static::class);
 
             return $closure(...$args);
         }
@@ -27,8 +26,8 @@ trait Methods
         );
     }
 
-    public static function addDynamicMethod($name, Closure $method)
+    public static function resolveMethodUsing(string $name, Closure $method): void
     {
-        static::$dynamicMethods[$name] = $method;
+        static::$methodResolvers[$name] = $method;
     }
 }

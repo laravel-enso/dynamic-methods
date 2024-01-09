@@ -2,11 +2,11 @@
 
 namespace LaravelEnso\DynamicMethods\Services;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
-use LaravelEnso\DynamicMethods\Contracts\DynamicMethods;
-use LaravelEnso\DynamicMethods\Contracts\Method as Contract;
+use LaravelEnso\DynamicMethods\Contracts\Relation as Contract;
 
-class Method
+class Relation
 {
     public function __construct(private Contract $dynamic)
     {
@@ -19,10 +19,10 @@ class Method
             ->each(fn ($object) => $this->handle($object));
     }
 
-    protected function handle(DynamicMethods $object)
+    protected function handle(Model $object): void
     {
         $args = [$this->dynamic->name(), $this->dynamic->closure()];
 
-        $object::resolveMethodUsing(...$args);
+        $object::resolveRelationUsing(...$args);
     }
 }

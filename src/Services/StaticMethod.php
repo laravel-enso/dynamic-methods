@@ -3,10 +3,10 @@
 namespace LaravelEnso\DynamicMethods\Services;
 
 use Illuminate\Support\Collection;
-use LaravelEnso\DynamicMethods\Contracts\DynamicMethods;
-use LaravelEnso\DynamicMethods\Contracts\Method as Contract;
+use LaravelEnso\DynamicMethods\Contracts\DynamicStaticMethods;
+use LaravelEnso\DynamicMethods\Contracts\StaticMethod as Contract;
 
-class Method
+class StaticMethod
 {
     public function __construct(private Contract $dynamic)
     {
@@ -19,10 +19,10 @@ class Method
             ->each(fn ($object) => $this->handle($object));
     }
 
-    protected function handle(DynamicMethods $object)
+    protected function handle(DynamicStaticMethods $object)
     {
         $args = [$this->dynamic->name(), $this->dynamic->closure()];
 
-        $object::resolveMethodUsing(...$args);
+        $object::resolveStaticMethodUsing(...$args);
     }
 }

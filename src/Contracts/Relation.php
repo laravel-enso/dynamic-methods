@@ -4,7 +4,7 @@ namespace LaravelEnso\DynamicMethods\Contracts;
 
 use Closure;
 
-interface Method
+interface Relation
 {
     public function name(): string;
 
