@@ -3,6 +3,7 @@
 namespace LaravelEnso\DynamicMethods\Services;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use LaravelEnso\DynamicMethods\Contracts\Method;
 use LaravelEnso\DynamicMethods\Contracts\Relation;
@@ -27,7 +28,7 @@ class Dynamics
             ? Collection::wrap(File::allFiles($this->folder()))
             ->map(fn (SplFileInfo $file) => $this->class($file))
             ->filter(fn ($class) => $this->qualifies($class))
-            ->map(fn ($class) => new $class())
+            ->map(fn ($class) => App::make($class))
             : new Collection();
     }
 
