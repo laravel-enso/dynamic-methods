@@ -17,7 +17,7 @@ trait StaticMethods
             return $closure(...$args);
         }
 
-        if (method_exists(parent::class, '__callStatic')) {
+        if (($parent = get_parent_class(static::class)) && method_exists($parent, '__callStatic')) {
             return parent::__callStatic($method, $args);
         }
 

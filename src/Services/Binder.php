@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use LaravelEnso\DynamicMethods\Contracts\Method as DynamicMethod;
 use LaravelEnso\DynamicMethods\Contracts\Relation as DynamicRelation;
+use LaravelEnso\DynamicMethods\Contracts\StaticMethod as DynamicStaticMethod;
 
 class Binder
 {
@@ -16,7 +17,7 @@ class Binder
             ->each(fn ($dynamic) => $this->bind($dynamic));
     }
 
-    private function bind(DynamicMethod|DynamicRelation $dynamic)
+    private function bind(DynamicMethod|DynamicRelation|DynamicStaticMethod $dynamic): void
     {
         if ($dynamic instanceof DynamicRelation) {
             (new Relation($dynamic))->bind();

@@ -17,7 +17,7 @@ trait Methods
             return $closure(...$args);
         }
 
-        if (method_exists(parent::class, '__call')) {
+        if (($parent = get_parent_class($this)) && method_exists($parent, '__call')) {
             return parent::__call($method, $args);
         }
 
