@@ -5,6 +5,7 @@
 [![Downloads](https://poser.pugx.org/laravel-enso/dynamic-methods/downloads)](https://packagist.org/packages/laravel-enso/dynamic-methods)
 [![PHP](https://img.shields.io/badge/php-8.0%2B-777bb4.svg)](composer.json)
 [![Issues](https://img.shields.io/github/issues/laravel-enso/dynamic-methods.svg)](https://github.com/laravel-enso/dynamic-methods/issues)
+[![Merge Requests](https://img.shields.io/github/issues-pr/laravel-enso/dynamic-methods.svg)](https://github.com/laravel-enso/dynamic-methods/pulls)
 
 ## Description
 
