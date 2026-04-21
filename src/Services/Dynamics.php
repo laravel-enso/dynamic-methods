@@ -34,7 +34,7 @@ class Dynamics
 
     private function qualifies(string $class): bool
     {
-        if (! class_exists($class)) {
+        if (!class_exists($class)) {
             return false;
         }
 
