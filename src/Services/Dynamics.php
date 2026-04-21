@@ -34,6 +34,10 @@ class Dynamics
 
     private function qualifies(string $class): bool
     {
+        if (! class_exists($class)) {
+            return false;
+        }
+
         $instance = new ReflectionClass($class);
 
         return $instance->implementsInterface(Relation::class)
