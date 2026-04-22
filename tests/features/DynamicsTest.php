@@ -50,7 +50,7 @@ class DynamicsTest extends TestCase
     public function binds_dynamic_methods_relations_and_static_methods_for_target_classes(): void
     {
         $this->installRuntimeFixturePackage();
-        config()->set('enso.dynamics.vendors', ['laravel-enso-fixture']);
+        config()->set('enso.dynamics.vendors', [$this->runtimeFixtureVendor()]);
 
         (new Binder())->handle();
 

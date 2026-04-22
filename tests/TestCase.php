@@ -10,6 +10,8 @@ use Tests\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
+    private ?string $runtimeFixtureVendor = null;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -36,7 +38,7 @@ abstract class TestCase extends BaseTestCase
     protected function installRuntimeFixturePackage(): string
     {
         $source = __DIR__.'/Fixtures/FixtureVendorPackage';
-        $destination = base_path('vendor/laravel-enso-fixture/dynamic-package');
+        $destination = base_path('vendor/'.$this->runtimeFixtureVendor().'/dynamic-package');
 
         File::deleteDirectory(dirname($destination));
         File::copyDirectory($source, $destination);
@@ -46,7 +48,15 @@ abstract class TestCase extends BaseTestCase
 
     protected function removeRuntimeFixturePackage(): void
     {
-        File::deleteDirectory(base_path('vendor/laravel-enso-fixture'));
+        File::deleteDirectory(base_path('vendor/'.$this->runtimeFixtureVendor()));
+    }
+
+    protected function runtimeFixtureVendor(): string
+    {
+        return $this->runtimeFixtureVendor ??= sprintf(
+            'laravel-enso-dynamic-methods-test-fixture-%s',
+            env('TEST_TOKEN', (string) getmypid())
+        );
     }
 
     protected function resetMethods(string $class): void
